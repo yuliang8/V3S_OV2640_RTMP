@@ -1,0 +1,569 @@
+--------------------
+./configure --host=arm-linux-gnueabihf-
+2018年 11月 01日 星期四 17:40:38 CST
+unknown option: --host=arm-linux-gnueabihf-
+./configure --help for help
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --help
+2018年 11月 01日 星期四 17:40:47 CST
+usage:
+  configure [--const] [--zprefix] [--prefix=PREFIX]  [--eprefix=EXPREFIX]
+    [--static] [--64] [--libdir=LIBDIR] [--sharedlibdir=LIBDIR]
+    [--includedir=INCLUDEDIR] [--archs="-arch i386 -arch x86_64"]
+--------------------
+./configure --archs=arm --prefix=arm-linux-gnueabihf
+2018年 11月 01日 星期四 17:41:37 CST
+Checking for gcc...
+=== ztest24657.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+gcc -c ztest24657.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest24657.c ===
+int foo() { return 0; }
+===
+gcc -c -O3 arm ztest24657.c
+gcc: error: arm: 没有那个文件或目录
+(exit code 1)
+Compiler error reporting is too harsh for ./configure (perhaps remove -Werror).
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --archs=arm --prefix=arm-linux-gnueabihf-
+2018年 11月 01日 星期四 17:41:52 CST
+Checking for gcc...
+=== ztest24699.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+gcc -c ztest24699.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest24699.c ===
+int foo() { return 0; }
+===
+gcc -c -O3 arm ztest24699.c
+gcc: error: arm: 没有那个文件或目录
+(exit code 1)
+Compiler error reporting is too harsh for ./configure (perhaps remove -Werror).
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --archs=arm --prefix=arm-linux-gnueabihf-
+2018年 11月 01日 星期四 17:42:33 CST
+Checking for gcc...
+=== ztest24743.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+gcc -c ztest24743.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest24743.c ===
+int foo() { return 0; }
+===
+gcc -c -O3 arm ztest24743.c
+gcc: error: arm: 没有那个文件或目录
+(exit code 1)
+Compiler error reporting is too harsh for ./configure (perhaps remove -Werror).
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --archs=arm --prefix=arm-linux-gnueabihf- -Wno
+2018年 11月 01日 星期四 17:42:47 CST
+unknown option: -Wno
+./configure --help for help
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --archs=arm --prefix=arm-linux-gnueabihf- -WNo
+2018年 11月 01日 星期四 17:43:28 CST
+unknown option: -WNo
+./configure --help for help
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --prefix=out
+2018年 11月 01日 星期四 17:50:46 CST
+=== ztest24880.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+arm-linux-gnueabihf-gcc -c ztest24880.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest24880.c ===
+int foo() { return 0; }
+===
+arm-linux-gnueabihf-gcc -c -O3 ztest24880.c
+
+Checking for shared library support...
+=== ztest24880.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+arm-linux-gnueabihf-gcc -w -c -O3 -fPIC ztest24880.c
+arm-linux-gnueabihf-gcc -shared -Wl,-soname,libz.so.1,--version-script,zlib.map -O3 -fPIC -o ztest24880.so ztest24880.o
+Building shared library libz.so.1.2.11 with arm-linux-gnueabihf-gcc.
+
+=== ztest24880.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+arm-linux-gnueabihf-gcc -c -O3 ztest24880.c
+Checking for size_t... Yes.
+
+
+=== ztest24880.c ===
+#include <sys/types.h>
+off64_t dummy = 0;
+===
+arm-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest24880.c
+Checking for off64_t... Yes.
+Checking for fseeko... Yes.
+
+=== ztest24880.c ===
+#include <string.h>
+#include <errno.h>
+int main() { return strlen(strerror(errno)); }
+===
+arm-linux-gnueabihf-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest24880 ztest24880.c
+Checking for strerror... Yes.
+
+=== ztest24880.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+arm-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest24880.c
+Checking for unistd.h... Yes.
+
+=== ztest24880.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+arm-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest24880.c
+Checking for stdarg.h... Yes.
+
+=== ztest24880.c ===
+#include <stdio.h>
+#include <stdarg.h>
+#include "zconf.h"
+int main()
+{
+#ifndef STDC
+  choke me
+#endif
+  return 0;
+}
+===
+arm-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest24880.c
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+
+=== ztest24880.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return 0;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+arm-linux-gnueabihf-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest24880 ztest24880.c
+Checking for vsnprintf() in stdio.h... Yes.
+
+=== ztest24880.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  int n;
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  n = vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return n;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+arm-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest24880.c
+Checking for return value of vsnprintf()... Yes.
+
+=== ztest24880.c ===
+#define ZLIB_INTERNAL __attribute__((visibility ("hidden")))
+int ZLIB_INTERNAL foo;
+int main()
+{
+  return 0;
+}
+===
+arm-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest24880.c
+Checking for attribute(visibility) support... Yes.
+
+ALL = static shared all64
+AR = ar
+ARFLAGS = rc
+CC = arm-linux-gnueabihf-gcc
+CFLAGS = -O3 -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+CPP = arm-linux-gnueabihf-gcc -E
+EXE =
+LDCONFIG = ldconfig
+LDFLAGS =
+LDSHARED = arm-linux-gnueabihf-gcc -shared -Wl,-soname,libz.so.1,--version-script,zlib.map
+LDSHAREDLIBC = -lc
+OBJC = $(OBJZ) $(OBJG)
+PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
+RANLIB = ranlib
+SFLAGS = -O3 -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+SHAREDLIB = libz.so
+SHAREDLIBM = libz.so.1
+SHAREDLIBV = libz.so.1.2.11
+STATICLIB = libz.a
+TEST = all teststatic testshared test64
+VER = 1.2.11
+Z_U4 =
+SRCDIR =
+exec_prefix = ${prefix}
+includedir = ${prefix}/include
+libdir = ${exec_prefix}/lib
+mandir = ${prefix}/share/man
+prefix = out
+sharedlibdir = ${libdir}
+uname = Linux
+--------------------
+
+
+--------------------
+./configure --prefix=out
+2018年 11月 19日 星期一 12:42:51 CST
+=== ztest6570.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+mips-linux-gnu-gcc -c ztest6570.c
+./configure: 行 182: mips-linux-gnu-gcc: 未找到命令
+... using mips-linux-gnu-gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest6570.c ===
+int foo() { return 0; }
+===
+mips-linux-gnu-gcc -c -O ztest6570.c
+./configure: 行 370: mips-linux-gnu-gcc: 未找到命令
+(exit code 127)
+Compiler error reporting is too harsh for ./configure (perhaps remove -Werror).
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --prefix=out
+2018年 11月 19日 星期一 12:43:52 CST
+=== ztest6668.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+mips-linux-gnu-gcc -c ztest6668.c
+./configure: 行 182: mips-linux-gnu-gcc: 未找到命令
+... using mips-linux-gnu-gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest6668.c ===
+int foo() { return 0; }
+===
+mips-linux-gnu-gcc -c -O ztest6668.c
+./configure: 行 370: mips-linux-gnu-gcc: 未找到命令
+(exit code 127)
+Compiler error reporting is too harsh for ./configure (perhaps remove -Werror).
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --prefix=out
+2018年 11月 19日 星期一 12:44:08 CST
+=== ztest6703.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+mips-linux-gnu-gcc -c ztest6703.c
+./configure: 行 182: mips-linux-gnu-gcc: 未找到命令
+... using mips-linux-gnu-gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest6703.c ===
+int foo() { return 0; }
+===
+mips-linux-gnu-gcc -c -O ztest6703.c
+./configure: 行 370: mips-linux-gnu-gcc: 未找到命令
+(exit code 127)
+Compiler error reporting is too harsh for ./configure (perhaps remove -Werror).
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure
+2018年 11月 19日 星期一 12:47:19 CST
+=== ztest6745.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+mips-linux-gnu-gcc -c ztest6745.c
+./configure: 行 182: mips-linux-gnu-gcc: 未找到命令
+... using mips-linux-gnu-gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest6745.c ===
+int foo() { return 0; }
+===
+mips-linux-gnu-gcc -c -O ztest6745.c
+./configure: 行 370: mips-linux-gnu-gcc: 未找到命令
+(exit code 127)
+Compiler error reporting is too harsh for ./configure (perhaps remove -Werror).
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --prefix=out
+2018年 11月 19日 星期一 12:48:53 CST
+=== ztest6819.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+mips-linux-gnu-gcc -c ztest6819.c
+./configure: 行 182: mips-linux-gnu-gcc: 未找到命令
+... using mips-linux-gnu-gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest6819.c ===
+int foo() { return 0; }
+===
+mips-linux-gnu-gcc -c -O ztest6819.c
+./configure: 行 370: mips-linux-gnu-gcc: 未找到命令
+(exit code 127)
+Compiler error reporting is too harsh for ./configure (perhaps remove -Werror).
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --prefix=out
+2018年 11月 19日 星期一 12:49:07 CST
+=== ztest6860.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+mips-linux-gnu-gcc -c ztest6860.c
+./configure: 行 182: mips-linux-gnu-gcc: 未找到命令
+... using mips-linux-gnu-gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest6860.c ===
+int foo() { return 0; }
+===
+mips-linux-gnu-gcc -c -O ztest6860.c
+./configure: 行 370: mips-linux-gnu-gcc: 未找到命令
+(exit code 127)
+Compiler error reporting is too harsh for ./configure (perhaps remove -Werror).
+** ./configure aborting.
+--------------------
+
+
+--------------------
+./configure --prefix=out
+2018年 11月 27日 星期二 18:34:40 CST
+=== ztest11431.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+mips-linux-gnu-gcc -c ztest11431.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest11431.c ===
+int foo() { return 0; }
+===
+mips-linux-gnu-gcc -c -O3 ztest11431.c
+
+Checking for shared library support...
+=== ztest11431.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+mips-linux-gnu-gcc -w -c -O3 -fPIC ztest11431.c
+mips-linux-gnu-gcc -shared -Wl,-soname,libz.so.1,--version-script,zlib.map -O3 -fPIC -o ztest11431.so ztest11431.o
+Building shared library libz.so.1.2.11 with mips-linux-gnu-gcc.
+
+=== ztest11431.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+mips-linux-gnu-gcc -c -O3 ztest11431.c
+Checking for size_t... Yes.
+
+
+=== ztest11431.c ===
+#include <sys/types.h>
+off64_t dummy = 0;
+===
+mips-linux-gnu-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest11431.c
+Checking for off64_t... Yes.
+Checking for fseeko... Yes.
+
+=== ztest11431.c ===
+#include <string.h>
+#include <errno.h>
+int main() { return strlen(strerror(errno)); }
+===
+mips-linux-gnu-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest11431 ztest11431.c
+Checking for strerror... Yes.
+
+=== ztest11431.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+mips-linux-gnu-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest11431.c
+Checking for unistd.h... Yes.
+
+=== ztest11431.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+mips-linux-gnu-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest11431.c
+Checking for stdarg.h... Yes.
+
+=== ztest11431.c ===
+#include <stdio.h>
+#include <stdarg.h>
+#include "zconf.h"
+int main()
+{
+#ifndef STDC
+  choke me
+#endif
+  return 0;
+}
+===
+mips-linux-gnu-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest11431.c
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+
+=== ztest11431.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return 0;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+mips-linux-gnu-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest11431 ztest11431.c
+Checking for vsnprintf() in stdio.h... Yes.
+
+=== ztest11431.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  int n;
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  n = vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return n;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+mips-linux-gnu-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest11431.c
+Checking for return value of vsnprintf()... Yes.
+
+=== ztest11431.c ===
+#define ZLIB_INTERNAL __attribute__((visibility ("hidden")))
+int ZLIB_INTERNAL foo;
+int main()
+{
+  return 0;
+}
+===
+mips-linux-gnu-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest11431.c
+Checking for attribute(visibility) support... Yes.
+
+ALL = static shared all64
+AR = ar
+ARFLAGS = rc
+CC = mips-linux-gnu-gcc
+CFLAGS = -O3 -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+CPP = mips-linux-gnu-gcc -E
+EXE =
+LDCONFIG = ldconfig
+LDFLAGS =
+LDSHARED = mips-linux-gnu-gcc -shared -Wl,-soname,libz.so.1,--version-script,zlib.map
+LDSHAREDLIBC = -lc
+OBJC = $(OBJZ) $(OBJG)
+PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
+RANLIB = ranlib
+SFLAGS = -O3 -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+SHAREDLIB = libz.so
+SHAREDLIBM = libz.so.1
+SHAREDLIBV = libz.so.1.2.11
+STATICLIB = libz.a
+TEST = all teststatic testshared test64
+VER = 1.2.11
+Z_U4 =
+SRCDIR =
+exec_prefix = ${prefix}
+includedir = ${prefix}/include
+libdir = ${exec_prefix}/lib
+mandir = ${prefix}/share/man
+prefix = out
+sharedlibdir = ${libdir}
+uname = Linux
+--------------------
+
+
